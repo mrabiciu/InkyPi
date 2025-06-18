@@ -119,7 +119,7 @@ class Weather(BasePlugin):
             "location": location_str,
             "current_day_icon": self.get_plugin_dir(f'icons/{current_icon}.png'),
             "current_temperature": str(round(current.get("temp"))),
-            "feels_like": str(round(current.get("feels_like"))),
+            "feels_like": f"H:{weather_data.get('daily')[0].get("temp").get("min")}/L:{weather_data.get('daily')[0].get("temp").get("max")}",#str(round(current.get("feels_like"))),
             "temperature_unit": UNITS[units]["temperature"],
             "units": units,
             "time_format": time_format
