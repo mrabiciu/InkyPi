@@ -79,8 +79,8 @@ class Weather(BasePlugin):
 
         try:
             weather_data = self.get_weather_data(api_key, units, lat, long)
-            aqi_data = self.get_air_quality(api_key, lat, long)
-            location_data = self.get_location(api_key, lat, long)
+            # aqi_data = self.get_air_quality(api_key, lat, long)
+            # location_data = self.get_location(api_key, lat, long)
         except Exception as e:
             logger.error(f"Failed to make OpenWeatherMap request: {str(e)}")
             raise RuntimeError("OpenWeatherMap request failure, please check logs.")
@@ -92,7 +92,7 @@ class Weather(BasePlugin):
         timezone = device_config.get_config("timezone", default="America/New_York")
         time_format = device_config.get_config("time_format", default="12h")
         tz = pytz.timezone(timezone)
-        template_params = self.parse_weather_data(weather_data, aqi_data, location_data, tz, units, time_format)
+        template_params = self.parse_weather_data(weather_data, tz, units, time_format)
         template_params["plugin_settings"] = settings
 
         # Add last refresh time
@@ -109,11 +109,11 @@ class Weather(BasePlugin):
             raise RuntimeError("Failed to take screenshot, please check logs.")
         return image
 
-    def parse_weather_data(self, weather_data, aqi_data, location_data, tz, units, time_format):
+    def parse_weather_data(self, weather_data, tz, units, time_format):
         current = weather_data.get("current")
         dt = datetime.fromtimestamp(current.get('dt'), tz=timezone.utc).astimezone(tz)
         current_icon = current.get("weather")[0].get("icon").replace("n", "d")
-        location_str = f"{location_data.get('name')}, {location_data.get('state', location_data.get('country'))}"
+        location_str = "Noe Valley"#f"{location_data.get('name')}, {location_data.get('state', location_data.get('country'))}"
         data = {
             "current_date": dt.strftime("%A, %B %d"),
             "location": location_str,
@@ -125,7 +125,7 @@ class Weather(BasePlugin):
             "time_format": time_format
         }
         data['forecast'] = self.parse_forecast(weather_data.get('daily'), tz)
-        data['data_points'] = self.parse_data_points(weather_data, aqi_data, tz, units, time_format)
+        data['data_points'] = []#self.parse_data_points(weather_data, aqi_data, tz, units, time_format)
 
         data['hourly_forecast'] = self.parse_hourly(weather_data.get('hourly'), tz, time_format)
         return data
