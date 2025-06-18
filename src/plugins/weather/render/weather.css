@@ -23,6 +23,7 @@
   flex-direction: column;
   justify-content: end;
   container-type: size;
+  margin-bottom: 20;
 }
 
 .last-refresh {
@@ -47,6 +48,7 @@
   font-weight: bold;
   line-height: 102%;
   height: 100%;
+  margin-bottom: 5;
 }
 
 .current-date {
@@ -87,6 +89,7 @@
   min-width: 0;
   min-height: 0;
   object-fit: contain;
+  margin: 20;
 }
 
 .current-temp {
@@ -180,6 +183,7 @@
   width: 100%;
   gap: 1.5dvw;
   overflow: hidden;
+  margin-top: 20;
 }
 
 .forecast-day {
@@ -187,7 +191,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1dvh 1vw;
-  border: 2px solid;
+  border: 1.5px solid;
   border-radius: 2vw;
   min-width: 0;
   max-height: 100%;
