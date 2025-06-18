@@ -87,6 +87,6 @@ class BasePlugin:
         # load and render the given html template
         template = env.get_template(html_file)
         rendered_html = template.render(template_params)
-        logger.log(f"rendered_html: {rendered_html}")
+        logger.info(f"rendered_html: {rendered_html}")
 
         return take_screenshot_html(rendered_html, dimensions)
