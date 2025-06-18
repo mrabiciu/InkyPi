@@ -112,7 +112,7 @@ class Weather(BasePlugin):
     def parse_weather_data(self, weather_data, tz, units, time_format):
         current = weather_data.get("current")
         dt = datetime.fromtimestamp(current.get('dt'), tz=timezone.utc).astimezone(tz)
-        current_icon = current.get("weather")[0].get("icon").replace("n", "d")
+        current_icon = current.get("weather")[0].get("icon")
         location_str = "Noe Valley"#f"{location_data.get('name')}, {location_data.get('state', location_data.get('country'))}"
         data = {
             "current_date": dt.strftime("%A, %B %d"),
