@@ -114,14 +114,14 @@ class Weather(BasePlugin):
         dt = datetime.fromtimestamp(current.get('dt'), tz=timezone.utc).astimezone(tz)
         current_icon = current.get("weather")[0].get("icon")
         location_str = "Noe Valley"#f"{location_data.get('name')}, {location_data.get('state', location_data.get('country'))}"
-        high = weather_data.get('daily')[0].get("temp").get("min")
-        low = weather_data.get('daily')[0].get("temp").get("low")
+        high = round(weather_data.get('daily')[0].get("temp").get("max"))
+        low = round(weather_data.get('daily')[0].get("temp").get("min"))
         data = {
             "current_date": dt.strftime("%A, %B %d"),
             "location": location_str,
             "current_day_icon": self.get_plugin_dir(f'icons/{current_icon}.png'),
             "current_temperature": str(round(current.get("temp"))),
-            "feels_like": f"H:{high}/L:{low}",#str(round(current.get("feels_like"))),
+            "feels_like": f"High {high}° Low {low}°",#str(round(current.get("feels_like"))),
             "temperature_unit": UNITS[units]["temperature"],
             "units": units,
             "time_format": time_format
