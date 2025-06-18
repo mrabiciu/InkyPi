@@ -41,6 +41,26 @@ class Weather(BasePlugin):
         template_params['style_settings'] = True
 
         return template_params
+    
+    def generate_image_on_start(self, device_config):
+        settings = {
+            'latitude': '37.74637082669778', 
+            'longitude': '-122.4336576461792', 
+            'units': 'metric', 
+            'displayRefreshTime': 'true', 
+            'displayForecast': 'true', 
+            'forecastDays': '5', 
+            'selectedFrame': 'None', 
+            'topMargin': '', 
+            'bottomMargin': '', 
+            'leftMargin': '', 
+            'rightMargin': '', 
+            'backgroundOption': 'color', 
+            'backgroundColor': '#ffffff', 
+            'textColor': '#000000'
+        }
+        return self.generate_image(settings, device_config)
+
 
     def generate_image(self, settings, device_config):
         logger.info(f"settings: {settings}")

@@ -27,6 +27,7 @@ from blueprints.plugin import plugin_bp
 from blueprints.playlist import playlist_bp
 from jinja2 import ChoiceLoader, FileSystemLoader
 from plugins.plugin_registry import load_plugins
+from plugins.weather.weather import Weather
 
 
 logger = logging.getLogger(__name__)
@@ -69,6 +70,9 @@ if __name__ == '__main__':
         img = generate_startup_image(device_config.get_resolution())
         display_manager.display_image(img)
         device_config.update_value("startup", False, write=True)
+
+    weather = Weather()
+    display_manager.display_image(weather.generate_image_on_start(device_config=device_config))
 
     try:
         # Run the Flask app
