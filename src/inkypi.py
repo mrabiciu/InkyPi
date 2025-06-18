@@ -71,7 +71,11 @@ if __name__ == '__main__':
         display_manager.display_image(img)
         device_config.update_value("startup", False, write=True)
 
-    weather = Weather()
+    weather = Weather({
+        "display_name": "Weather",
+        "id": "weather",
+        "class": "Weather"
+    })
     display_manager.display_image(weather.generate_image_on_start(device_config=device_config))
 
     try:
