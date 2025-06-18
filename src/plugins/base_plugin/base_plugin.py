@@ -62,6 +62,7 @@ class BasePlugin:
         return base64.b64encode(open(file, "rb").read()).decode('utf-8')
 
     def render_image(self, dimensions, html_file, css_file=None, template_params={}):
+        logger.info(f"template_params: {template_params}")
         # instantiate jinja2 env with base plugin and current plugin render directories
         base_render_dir = os.path.join(BASE_PLUGIN_DIR, "render")
         plugin_render_dir = self.get_plugin_dir("render")
@@ -86,5 +87,6 @@ class BasePlugin:
         # load and render the given html template
         template = env.get_template(html_file)
         rendered_html = template.render(template_params)
+        logger.log(f"rendered_html: {rendered_html}")
 
         return take_screenshot_html(rendered_html, dimensions)
