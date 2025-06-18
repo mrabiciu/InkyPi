@@ -43,6 +43,7 @@ class Weather(BasePlugin):
         return template_params
 
     def generate_image(self, settings, device_config):
+        logger.info(f"settings: {settings}")
         api_key = device_config.load_env_key("OPEN_WEATHER_MAP_SECRET")
         if not api_key:
             raise RuntimeError("Open Weather Map API Key not configured.")
