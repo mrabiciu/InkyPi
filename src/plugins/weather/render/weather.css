@@ -187,8 +187,8 @@
   flex-direction: column;
   align-items: center;
   padding: 1dvh 1vw;
-  border: 1px solid;
-  border-radius: 1.2vw;
+  border: 2px solid;
+  border-radius: 2vw;
   min-width: 0;
   max-height: 100%;
   gap: 0.5dvh

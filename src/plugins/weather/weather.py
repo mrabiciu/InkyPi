@@ -185,8 +185,8 @@ class Weather(BasePlugin):
             forecast.append(
                 {
                     "day": day_label,
-                    "high": int(day["temp"]["max"]),
-                    "low": int(day["temp"]["min"]),
+                    "high": round(day["temp"]["max"]),
+                    "low": round(day["temp"]["min"]),
                     "icon": weather_icon_path,
                     "moon_phase_pct": moon_pct,
                     "moon_phase_icon": moon_icon_path,
