@@ -41,7 +41,7 @@
 }
 
 .location {
-  font-size: min(50cqh, 8cqi);
+  font-size: 50;
   text-align: center;
   align-content: end;
   width: 100%;
@@ -52,7 +52,7 @@
 }
 
 .current-date {
-  font-size: min(30cqh, 6cqi);
+  font-size: 50;
   text-align: center;
   align-content: end;
   width: 100%;
@@ -84,7 +84,7 @@
   height: auto;
   max-width: 90%;
   width: auto;
-  max-height: 100%;
+  max-height: 70%;
   flex: 1;
   min-width: 0;
   min-height: 0;
