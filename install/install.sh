@@ -337,15 +337,15 @@ stop_service
 if [[ -n "$WS_TYPE" ]]; then
   fetch_waveshare_driver
 fi
-enable_interfaces
-install_debian_dependencies
-copy_project
-create_venv
-install_executable
-install_config
-# update the config file with additional WS if defined.
-if [[ -n "$WS_TYPE" ]]; then
-  update_config
-fi
+# enable_interfaces
+# install_debian_dependencies
+# copy_project
+# create_venv
+# install_executable
+# install_config
+# # update the config file with additional WS if defined.
+# if [[ -n "$WS_TYPE" ]]; then
+#   update_config
+# fi
 install_app_service
 ask_for_reboot
