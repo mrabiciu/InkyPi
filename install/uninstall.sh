@@ -108,7 +108,7 @@ check_permissions
 confirm_uninstall
 stop_service
 disable_service
-remove_files
+# remove_files
 
 echo_success "Uninstallation complete."
 echo_header "All components of $APPNAME have been removed."

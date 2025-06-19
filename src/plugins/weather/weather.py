@@ -86,8 +86,8 @@ class Weather(BasePlugin):
             raise RuntimeError("OpenWeatherMap request failure, please check logs.")
 
         dimensions = device_config.get_resolution()
-        if device_config.get_config("orientation") == "vertical":
-            dimensions = dimensions[::-1]
+        # if device_config.get_config("orientation") == "vertical":
+        dimensions = dimensions[::-1]
 
         timezone = device_config.get_config("timezone", default="America/New_York")
         time_format = device_config.get_config("time_format", default="12h")
