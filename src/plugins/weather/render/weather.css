@@ -187,8 +187,9 @@
   gap: 1.5dvw;
   overflow: hidden;
   margin-top: 20;
-  padding-left: 8%;
-  padding-right: 8%;
+  padding-left: 4%;
+  height: 20%;
+  padding-right: 4%;
 }
 
 .forecast-day {
@@ -200,7 +201,8 @@
   border-radius: 3vw;
   min-width: 0;
   max-height: 100%;
-  gap: 0.5dvh
+  gap: 0.5dvh;
+  height: 100%;
 }
 
 .forecast-day-name {
