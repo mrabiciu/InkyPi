@@ -49,7 +49,7 @@ class Weather(BasePlugin):
             'units': 'metric', 
             'displayRefreshTime': 'true', 
             'displayForecast': 'true', 
-            'forecastDays': '5', 
+            'forecastDays': '4', 
             'selectedFrame': 'None', 
             'topMargin': '', 
             'bottomMargin': '', 
