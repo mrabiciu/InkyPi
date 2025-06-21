@@ -24,8 +24,9 @@
   justify-content: end;
   container-type: size;
   margin-bottom: 20;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 8%;
+  padding-right: 8%;
+  background-color: red;
 
 }
 
@@ -187,6 +188,8 @@
   gap: 1.5dvw;
   overflow: hidden;
   margin-top: 20;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
 .forecast-day {
