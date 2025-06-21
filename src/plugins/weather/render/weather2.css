@@ -17,16 +17,13 @@
 }
 
 .header {
-  height: 15dvh;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
   container-type: size;
   margin-bottom: 20;
-  padding-left: 10%;
-  padding-right: 10%;
-
 }
 
 .last-refresh {
@@ -44,18 +41,30 @@
 }
 
 .location {
-  font-size: min(50cqh, 10cqi);
+  font-size: 70;
   text-align: center;
   align-content: end;
   width: 100%;
   font-weight: bold;
   line-height: 102%;
-  height: 100%;
-  margin-bottom: 5;
+  /* height: 100%; */
+  /* margin-bottom: 5; */
 }
 
+.location2 {
+  font-size: 70;
+  text-align: center;
+  align-content: end;
+  width: 100%;
+  font-weight: bold;
+  line-height: 102%;
+  /* height: 100%; */
+  /* margin-bottom: 5; */
+}
+
+
 .current-date {
-  font-size: min(30cqh, 40cqi);
+  font-size: min(50cqh, 10cqi);
   text-align: center;
   align-content: end;
   width: 100%;
@@ -73,26 +82,26 @@
 /* Current Weather Row */
 .current-temperature {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* Column on small screens */
   align-items: center;
-  justify-content: center;
-  width: 50%;
-  padding: 0 2vw;
+  /* justify-content: center; */
+  /* width: 50%; */
+  /* padding: 0 2vw; */
   height: 100%;
   overflow: hidden;
 }
 
 .current-icon {
   height: auto;
-  max-width: 90%;
+  max-width: 100%;
   width: auto;
-  max-height: 70%;
+  max-height: 60%;
   flex: 1;
   min-width: 0;
   min-height: 0;
   object-fit: contain;
-  margin: 20;
+  /* margin: 20; */
 }
 
 .current-temp {
@@ -194,8 +203,8 @@
   flex-direction: column;
   align-items: center;
   padding: 1dvh 1vw;
-  border: 2px solid;
-  border-radius: 3vw;
+  border: 1.5px solid;
+  border-radius: 2vw;
   min-width: 0;
   max-height: 100%;
   gap: 0.5dvh
@@ -247,7 +256,7 @@
   height: 100%;
   flex: 1;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   min-width: 0;
 }
 
@@ -304,6 +313,11 @@
     height: 7dvh;
   }
 
+  .top-half {
+    flex-direction: row;
+    justify-content: space-evenly;
+    display: flex;
+  }
 }
 
 @media (max-aspect-ratio: 1/2) {
