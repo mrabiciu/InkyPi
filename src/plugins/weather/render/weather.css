@@ -70,6 +70,7 @@
   width: 100%;
   overflow: hidden;
   height: 45%;
+  padding-bottom: 3%;
 }
 
 /* Current Weather Row */
@@ -188,7 +189,6 @@
   width: 100%;
   gap: 1.5dvw;
   overflow: hidden;
-  margin-top: 20;
   padding-left: 4%;
   height: 20%;
   padding-right: 4%;
