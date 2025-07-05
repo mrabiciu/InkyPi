@@ -108,6 +108,14 @@ if __name__ == '__main__':
     )
     logger.info(f"[nc]: {nc.stdout}")
 
+    nc = subprocess.run(
+        ['sudo', 'shutdown'],
+        capture_output=True,
+        text=True
+    )
+
+    logger.info(f"[shutdown]: {nc.stdout}")
+
 
     # echo "rtc_alarm_set 2001-01-01T10:47:33.000-07:00 127" | nc -q 0 127.0.0.1 8423
 
