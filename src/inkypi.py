@@ -28,6 +28,7 @@ from blueprints.playlist import playlist_bp
 from jinja2 import ChoiceLoader, FileSystemLoader
 from plugins.plugin_registry import load_plugins
 from plugins.weather.weather import Weather
+import subprocess
 
 
 logger = logging.getLogger(__name__)
@@ -63,6 +64,16 @@ if __name__ == '__main__':
     # start the background refresh task
     # if not is_running_from_reloader():
     #     refresh_task.start()
+
+    # run bash command
+    nc = subprocess.run(
+        ['nc', '-q', '0', '127.0.0.1', '8423'],
+        input="echo 'get battery'",
+        capture_output=True,
+        text=True
+    )
+    print(nc.stdout)
+
 
     # display default inkypi image on startup
     if device_config.get_config("startup") is True:
