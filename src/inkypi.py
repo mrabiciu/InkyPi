@@ -72,7 +72,7 @@ if __name__ == '__main__':
         capture_output=True,
         text=True
     )
-    print(nc.stdout)
+    logger.info(f"[stdout]: {nc.stdout}")
 
 
     # display default inkypi image on startup
