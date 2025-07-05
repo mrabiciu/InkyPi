@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 # set up logging
+import decimal
 import os, logging.config
 logging.config.fileConfig(os.path.join(os.path.dirname(__file__), 'config', 'logging.conf'))
 
@@ -72,7 +73,8 @@ if __name__ == '__main__':
         capture_output=True,
         text=True
     )
-    logger.info(f"[stdout]: {nc.stdout}")
+    battery_level = decimal.Decimal(nc.stdout.split(" ")[1])
+    logger.info(f"[battery_level]: {battery_level}")
 
 
     # display default inkypi image on startup
