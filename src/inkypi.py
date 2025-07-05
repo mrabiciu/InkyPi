@@ -68,7 +68,7 @@ if __name__ == '__main__':
     # run bash command
     nc = subprocess.run(
         ['nc', '-q', '0', '127.0.0.1', '8423'],
-        input="echo 'get battery'",
+        input="get battery",
         capture_output=True,
         text=True
     )
