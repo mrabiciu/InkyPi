@@ -99,9 +99,10 @@ if __name__ == '__main__':
     next_hour = current_time + timedelta(hours=1)
     formatted_next_hour = next_hour.strftime("%Y-%m-%dT%H:00:00.000-07:00")
 
+    logger.info(f"[formatted_time]: {formatted_next_hour}")
     nc = subprocess.run(
         ['nc', '-q', '0', '127.0.0.1', '8423'],
-        input=f"rtc_alarm_set {formatted_time} 127",
+        input=f"rtc_alarm_set {formatted_next_hour} 127",
         capture_output=True,
         text=True
     )
