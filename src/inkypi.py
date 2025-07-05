@@ -117,12 +117,12 @@ if __name__ == '__main__':
 
     nc = subprocess.run(
         ['nc', '-q', '0', '127.0.0.1', '8423'],
-        input="rtc_pi2rtc",
+        input="rtc_web",
         capture_output=True,
         text=True
     )
 
-    logger.info(f"[rtc_pi2rtc]: {nc.stdout}")
+    logger.info(f"[rtc_web]: {nc.stdout}")
 
     # nc = subprocess.run(
     #     ['sudo', 'shutdown'],
