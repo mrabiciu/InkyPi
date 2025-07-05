@@ -61,8 +61,8 @@ if __name__ == '__main__':
     from werkzeug.serving import is_running_from_reloader
 
     # start the background refresh task
-    if not is_running_from_reloader():
-        refresh_task.start()
+    # if not is_running_from_reloader():
+    #     refresh_task.start()
 
     # display default inkypi image on startup
     if device_config.get_config("startup") is True:
@@ -78,9 +78,9 @@ if __name__ == '__main__':
     })
     display_manager.display_image(weather.generate_image_on_start(device_config=device_config))
 
-    try:
-        # Run the Flask app
-        app.secret_key = str(random.randint(100000,999999))
-        app.run(host="0.0.0.0", port=80)
-    finally:
-        refresh_task.stop()
+    # try:
+    #     # Run the Flask app
+    #     app.secret_key = str(random.randint(100000,999999))
+    #     app.run(host="0.0.0.0", port=80)
+    # finally:
+    #     refresh_task.stop()
