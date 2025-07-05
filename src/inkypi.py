@@ -30,7 +30,7 @@ from jinja2 import ChoiceLoader, FileSystemLoader
 from plugins.plugin_registry import load_plugins
 from plugins.weather.weather import Weather
 import subprocess
-
+from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -90,6 +90,28 @@ if __name__ == '__main__':
         "class": "Weather"
     })
     display_manager.display_image(weather.generate_image_on_start(device_config=device_config))
+
+    # get current time
+    current_time = datetime.now()
+    logger.info(f"[current_time]: {current_time}")  
+    formatted_time = current_time.strftime("%Y-%m-%dT%H:%M:%S.000-07:00")
+    # get next hour
+    next_hour = current_time + timedelta(hours=1)
+    formatted_next_hour = next_hour.strftime("%Y-%m-%dT%H:00:00.000-07:00")
+
+    nc = subprocess.run(
+        ['nc', '-q', '0', '127.0.0.1', '8423'],
+        input=f"rtc_alarm_set {formatted_time} 127",
+        capture_output=True,
+        text=True
+    )
+    logger.info(f"[nc]: {nc.stdout}")
+
+
+    # echo "rtc_alarm_set 2001-01-01T10:47:33.000-07:00 127" | nc -q 0 127.0.0.1 8423
+
+    
+
 
     # try:
     #     # Run the Flask app
