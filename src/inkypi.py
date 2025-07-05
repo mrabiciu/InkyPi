@@ -115,13 +115,29 @@ if __name__ == '__main__':
     display_manager.display_image(weather.generate_image_on_start(device_config=device_config, next_refresh_time=formatted_next_hour))
 
 
+    nc = subprocess.run(
+        ['nc', '-q', '0', '127.0.0.1', '8423'],
+        input="rtc_pi2rtc",
+        capture_output=True,
+        text=True
+    )
+
+    logger.info(f"[rtc_pi2rtc]: {nc.stdout}")
+
     # nc = subprocess.run(
     #     ['sudo', 'shutdown'],
     #     capture_output=True,
     #     text=True
     # )
 
-    # logger.info(f"[shutdown]: {nc.stdout}")
+
+    nc = subprocess.run(
+        ['sudo', 'shutdown'],
+        capture_output=True,
+        text=True
+    )
+
+    logger.info(f"[shutdown]: {nc.stdout}")
 
 
     # echo "rtc_alarm_set 2001-01-01T10:47:33.000-07:00 127" | nc -q 0 127.0.0.1 8423
