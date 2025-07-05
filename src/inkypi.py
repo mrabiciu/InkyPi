@@ -89,7 +89,6 @@ if __name__ == '__main__':
         "id": "weather",
         "class": "Weather"
     })
-    display_manager.display_image(weather.generate_image_on_start(device_config=device_config))
 
     # get current time
     current_time = datetime.now()
@@ -113,6 +112,8 @@ if __name__ == '__main__':
         text=True
     )
     logger.info(f"[nc]: {nc.stdout}")
+    display_manager.display_image(weather.generate_image_on_start(device_config=device_config, next_refresh_time=formatted_next_hour))
+
 
     nc = subprocess.run(
         ['sudo', 'shutdown'],
