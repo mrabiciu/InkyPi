@@ -34,13 +34,13 @@ import subprocess
 
 logger = logging.getLogger(__name__)
 
-logger.info("Starting web server")
-app = Flask(__name__)
-template_dirs = [
-   os.path.join(os.path.dirname(__file__), "templates"),    # Default template folder
-   os.path.join(os.path.dirname(__file__), "plugins"),      # Plugin templates
-]
-app.jinja_loader = ChoiceLoader([FileSystemLoader(directory) for directory in template_dirs])
+# logger.info("Starting web server")
+# app = Flask(__name__)
+# template_dirs = [
+#    os.path.join(os.path.dirname(__file__), "templates"),    # Default template folder
+#    os.path.join(os.path.dirname(__file__), "plugins"),      # Plugin templates
+# ]
+# app.jinja_loader = ChoiceLoader([FileSystemLoader(directory) for directory in template_dirs])
 
 device_config = Config()
 display_manager = DisplayManager(device_config)
@@ -49,15 +49,15 @@ refresh_task = RefreshTask(device_config, display_manager)
 load_plugins(device_config.get_plugins())
 
 # Store dependencies
-app.config['DEVICE_CONFIG'] = device_config
-app.config['DISPLAY_MANAGER'] = display_manager
-app.config['REFRESH_TASK'] = refresh_task
+# app.config['DEVICE_CONFIG'] = device_config
+# app.config['DISPLAY_MANAGER'] = display_manager
+# app.config['REFRESH_TASK'] = refresh_task
 
 # Register Blueprints
-app.register_blueprint(main_bp)
-app.register_blueprint(settings_bp)
-app.register_blueprint(plugin_bp)
-app.register_blueprint(playlist_bp)
+# app.register_blueprint(main_bp)
+# app.register_blueprint(settings_bp)
+# app.register_blueprint(plugin_bp)
+# app.register_blueprint(playlist_bp)
 
 if __name__ == '__main__':
     from werkzeug.serving import is_running_from_reloader
