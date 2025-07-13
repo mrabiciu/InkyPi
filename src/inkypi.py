@@ -66,6 +66,15 @@ if __name__ == '__main__':
     # if not is_running_from_reloader():
     #     refresh_task.start()
 
+    nc = subprocess.run(
+        ['nc', '-q', '0', '127.0.0.1', '8423'],
+        input="rtc_web",
+        capture_output=True,
+        text=True
+    )
+
+    logger.info(f"[rtc_web]: {nc.stdout}")
+
     # run bash command
     nc = subprocess.run(
         ['nc', '-q', '0', '127.0.0.1', '8423'],
@@ -98,11 +107,13 @@ if __name__ == '__main__':
     current_hour = current_time.hour
     formatted_next_hour = ""
     if current_hour == 23 or current_hour < 5:
-        formatted_next_hour = current_time.strftime("%Y-%m-%dT05:30:00.000-07:00")
+        formatted_next_hour = current_time.strftime("%Y-%m-%dT06:00:00.000-07:00")
     else:
         # get next hour
-        next_hour = current_time + timedelta(hours=1)
-        formatted_next_hour = next_hour.strftime("%Y-%m-%dT%H:10:00.000-07:00")
+        next_hour = current_time + timedelta(hours=1, minutes=15)
+        formatted_next_hour = next_hour.strftime("%Y-%m-%dT%H:00:00.000-07:00")
+
+    formatted_next_hour += f" - [battery: {battery_level}]"
 
     logger.info(f"[formatted_time]: {formatted_next_hour}")
     nc = subprocess.run(
@@ -115,14 +126,6 @@ if __name__ == '__main__':
     display_manager.display_image(weather.generate_image_on_start(device_config=device_config, next_refresh_time=formatted_next_hour))
 
 
-    nc = subprocess.run(
-        ['nc', '-q', '0', '127.0.0.1', '8423'],
-        input="rtc_web",
-        capture_output=True,
-        text=True
-    )
-
-    logger.info(f"[rtc_web]: {nc.stdout}")
 
     # nc = subprocess.run(
     #     ['sudo', 'shutdown'],
