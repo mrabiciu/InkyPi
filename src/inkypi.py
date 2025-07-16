@@ -123,7 +123,7 @@ if __name__ == '__main__':
     )
     logger.info(f"[nc]: {nc.stdout}")
     display_manager.display_image(
-        weather.generate_image_on_start(device_config=device_config, next_refresh_time=f"{round(battery_level)}%")
+        weather.generate_image_on_start(device_config=device_config, battery=f"{round(battery_level)}%")
     )
 
 
