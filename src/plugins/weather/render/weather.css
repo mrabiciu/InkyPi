@@ -33,8 +33,8 @@
 
 .last-refresh {
   position: absolute;
-  top: 0.5dvh;
-  right: 0.5dvw;
+  top: 75px;
+  right: 75px;
   font-size: min(2dvh, 2vw);
   text-align: right;
   font-weight: bold;
