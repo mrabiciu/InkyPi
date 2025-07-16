@@ -113,9 +113,8 @@ if __name__ == '__main__':
         next_hour = current_time + timedelta(hours=1, minutes=15)
         formatted_next_hour = next_hour.strftime("%Y-%m-%dT%H:00:00.000-07:00")
 
-    formatted_next_hour += f" - [battery: {battery_level}]"
+    # formatted_next_hour += f" - [battery: {battery_level}]"
 
-    logger.info(f"[formatted_time]: {formatted_next_hour}")
     nc = subprocess.run(
         ['nc', '-q', '0', '127.0.0.1', '8423'],
         input=f"rtc_alarm_set {formatted_next_hour} 127",
@@ -123,7 +122,9 @@ if __name__ == '__main__':
         text=True
     )
     logger.info(f"[nc]: {nc.stdout}")
-    display_manager.display_image(weather.generate_image_on_start(device_config=device_config, next_refresh_time=formatted_next_hour))
+    display_manager.display_image(
+        weather.generate_image_on_start(device_config=device_config, next_refresh_time=f"{round(battery_level)}%")
+    )
 
 
 

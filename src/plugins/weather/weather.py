@@ -42,7 +42,7 @@ class Weather(BasePlugin):
 
         return template_params
     
-    def generate_image_on_start(self, device_config, next_refresh_time):
+    def generate_image_on_start(self, device_config, battery):
         settings = {
             'latitude': '37.74637082669778', 
             'longitude': '-122.4336576461792', 
@@ -59,10 +59,10 @@ class Weather(BasePlugin):
             'backgroundColor': '#ffffff', 
             'textColor': '#000000'
         }
-        return self.generate_image(settings, device_config, next_refresh_time)
+        return self.generate_image(settings, device_config, battery)
 
 
-    def generate_image(self, settings, device_config, next_refresh_time):
+    def generate_image(self, settings, device_config, battery):
         logger.info(f"settings: {settings}")
         api_key = device_config.load_env_key("OPEN_WEATHER_MAP_SECRET")
         if not api_key:
@@ -97,11 +97,9 @@ class Weather(BasePlugin):
 
         # Add last refresh time
         now = datetime.now(tz)
-        if time_format == "24h":
-            last_refresh_time = now.strftime("%Y-%m-%d %H:%M")
-        else:
-            last_refresh_time = now.strftime("%Y-%m-%d %I:%M %p")
-        template_params["last_refresh_time"] = last_refresh_time + " - " + next_refresh_time
+        
+        last_refresh_time = now.strftime("%I:%M %p")
+        template_params["last_refresh_time"] = last_refresh_time + " - " + battery
         image = self.render_image(dimensions, "weather.html", "weather.css", template_params)
 
         if not image:
