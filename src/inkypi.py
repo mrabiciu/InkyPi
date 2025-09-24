@@ -60,47 +60,47 @@ load_plugins(device_config.get_plugins())
 # app.register_blueprint(playlist_bp)
 
 if __name__ == '__main__':
-    # try:
-    from werkzeug.serving import is_running_from_reloader
+    try:
+        from werkzeug.serving import is_running_from_reloader
 
-    # start the background refresh task
-    # if not is_running_from_reloader():
-    #     refresh_task.start()
+        # start the background refresh task
+        # if not is_running_from_reloader():
+        #     refresh_task.start()
 
-    nc = subprocess.run(
-        ['nc', '-q', '0', '127.0.0.1', '8423'],
-        input="rtc_web",
-        capture_output=True,
-        text=True
-    )
+        nc = subprocess.run(
+            ['nc', '-q', '0', '127.0.0.1', '8423'],
+            input="rtc_web",
+            capture_output=True,
+            text=True
+        )
 
-    logger.info(f"[rtc_web]: {nc.stdout}")
+        logger.info(f"[rtc_web]: {nc.stdout}")
 
-    # run bash command
-    nc = subprocess.run(
-        ['nc', '-q', '0', '127.0.0.1', '8423'],
-        input="get battery",
-        capture_output=True,
-        text=True
-    )
-    battery_level = decimal.Decimal(nc.stdout.split(" ")[1])
-    logger.info(f"[battery_level]: {battery_level}")
+        # run bash command
+        nc = subprocess.run(
+            ['nc', '-q', '0', '127.0.0.1', '8423'],
+            input="get battery",
+            capture_output=True,
+            text=True
+        )
+        battery_level = decimal.Decimal(nc.stdout.split(" ")[1])
+        logger.info(f"[battery_level]: {battery_level}")
 
 
-    # display default inkypi image on startup
-    if device_config.get_config("startup") is True:
-        logger.info("Startup flag is set, displaying startup image")
-        img = generate_startup_image(device_config.get_resolution())
-        display_manager.display_image(img)
-        device_config.update_value("startup", False, write=True)
+        # display default inkypi image on startup
+        if device_config.get_config("startup") is True:
+            logger.info("Startup flag is set, displaying startup image")
+            img = generate_startup_image(device_config.get_resolution())
+            display_manager.display_image(img)
+            device_config.update_value("startup", False, write=True)
 
-    weather = Weather({
-        "display_name": "Weather",
-        "id": "weather",
-        "class": "Weather"
-    })
-    # except Exception as e:
-    #     logger.info(f"error: {e}")
+        weather = Weather({
+            "display_name": "Weather",
+            "id": "weather",
+            "class": "Weather"
+        })
+    except Exception as e:
+        logger.info(f"error: {e}")
 
     # get current time
     current_time = datetime.now()
@@ -124,13 +124,13 @@ if __name__ == '__main__':
         capture_output=True,
         text=True
     )
-    # try:
-    logger.info(f"[nc]: {nc.stdout}")
-    display_manager.display_image(
-        weather.generate_image_on_start(device_config=device_config, battery=f"{round(battery_level)}%")
-    )
-    # except Exception as e:
-    #     logger.info(f"error: {e}")
+    try:
+        logger.info(f"[nc]: {nc.stdout}")
+        display_manager.display_image(
+            weather.generate_image_on_start(device_config=device_config, battery=f"{round(battery_level)}%")
+        )
+    except Exception as e:
+        logger.info(f"error: {e}")
 
     # nc = subprocess.run(
     #     ['sudo', 'shutdown'],
